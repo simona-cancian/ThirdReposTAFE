@@ -15,6 +15,7 @@ namespace Ticketing
         int mSection = 2;
         int mQuantity = 0;
         bool mDiscount = false;
+        decimal mDiscountAmount;
 
         public TicketsForm()
         {
@@ -42,7 +43,9 @@ namespace Ticketing
             if (radBackStall.Checked)
                 { mSection = 4; }
 
-            mTicketPrice = new TicketPrice(mSection, mQuantity, mDiscount);
+            mDiscountAmount = decimal.Parse(txtDiscount.Text);
+
+            mTicketPrice = new TicketPrice(mSection, mQuantity, mDiscount, mDiscountAmount);
 
             mTicketPrice.calculatePrice();
             lblAmount.Text = System.Convert.ToString(mTicketPrice.AmountDue);
